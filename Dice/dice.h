@@ -4,23 +4,27 @@
 #include <QVector>
 #include <ctime>
 #include <cstdlib>
-
+#include <QObject>
 #include "dice_global.h"
 
 class DICESHARED_EXPORT Dice
 {
+    Q_GADGET
+
 public:
-    enum dice {deux = 2, quatre = 4, six = 6, huit = 8, dix = 10, douze = 12,
-               vingt = 20, cent = 100};
+    enum StandardDice {Two = 2, Four = 4, Six = 6, Eight = 8, Ten = 10, Twelve = 12,
+               Twenty = 20, Cent = 100};
+
+    Q_ENUM(StandardDice)
 
 private:
-    int alea(int);
+    int alea(int) const;
+    int roll(int, int = 1) const;
 
 public:
     Dice();
-    int roll(dice, int = 1);
-    QVector<int> roll(dice, int, int);
-    bool isEnum(int);
+    Q_INVOKABLE QVector<int> roll(int, int, int) const;
+    Q_INVOKABLE bool isStandard(int) const;
 
 };
 

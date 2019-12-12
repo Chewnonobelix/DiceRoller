@@ -6,47 +6,49 @@ Dice::Dice()
     srand(time(NULL));
 }
 
-int Dice::roll(dice d, int n)
+int Dice::roll(int d, int n) const
 {
-    int janus = 0;
-    for(int mars = 0; mars < n; mars++)
-    {
-        janus += alea(d);
-    }
-    return janus;
+    int ret = 0;
+    for(int i = 0; i < n; i++)
+        ret += alea(d);
+
+    return ret;
 }
 
-QVector<int> Dice::roll(dice d, int n, int p)
+QVector<int> Dice::roll(int d, int p, int n) const
 {
-    QVector<int> janus;
-    for(int mars = 0; mars < n; mars++)
+    QVector<int> ret;
+    for(int i = 0; i < n; i++)
     {
-        int venus = 0;
-        for(int mercure = 0; mercure < p; mercure ++)
-        {
-            venus += alea(d);
-        }
-        janus<<venus;
+        int k = 0;
+        for(int j = 0; j < p; j ++)
+            k += alea(d);
+
+        ret<<k;
     }
 
-    return janus;
+    return ret;
 }
 
-int Dice::alea(int type)
+int Dice::alea(int type) const
 {
     return (rand()%(type)) + 1;
 }
 
-bool Dice::isEnum(int n)
+bool Dice::isStandard(int n) const
 {
-    if(n == deux || n == quatre || n == six
-            || n == huit || n == dix || n == douze
-            || n == vingt || n == cent)
+    switch (n)
     {
+    case 2:
+    case 4:
+    case 6:
+    case 8:
+    case 10:
+    case 12:
+    case 20:
+    case 100:
         return true;
-    }
-    else
-    {
+    default:
         return false;
     }
 }
