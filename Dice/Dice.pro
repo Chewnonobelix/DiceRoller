@@ -15,3 +15,5 @@ SOURCES += dice.cpp
 
 HEADERS += dice.h\
         dice_global.h
+
+CONFIG += c++17
