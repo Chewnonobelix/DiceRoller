@@ -10,4 +10,4 @@ SOURCES +=  tst_dicetest.cpp
 
 INCLUDEPATH += ../Dice
 DEPENDPATH += $$OUT_PWD/../Dice/
-LIBS += -L$$OUT_PWD/../Dice/ -lDice
+LIBS += -L$$OUT_PWD/../Dice/debug -lDice
